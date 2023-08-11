@@ -1,0 +1,12 @@
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\bin\Debug\net6.0\CarpoolService.Contracts.deps.json
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\bin\Debug\net6.0\CarpoolService.Contracts.dll
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\bin\Debug\net6.0\CarpoolService.Contracts.pdb
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\obj\Debug\net6.0\CarpoolService.Contracts.csproj.AssemblyReference.cache
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\obj\Debug\net6.0\CarpoolService.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\obj\Debug\net6.0\CarpoolService.Contracts.AssemblyInfoInputs.cache
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\obj\Debug\net6.0\CarpoolService.Contracts.AssemblyInfo.cs
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\obj\Debug\net6.0\CarpoolService.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\obj\Debug\net6.0\CarpoolService.Contracts.dll
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\obj\Debug\net6.0\refint\CarpoolService.Contracts.dll
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\obj\Debug\net6.0\CarpoolService.Contracts.pdb
+C:\Users\surya.g\source\repos\CarPoolServiceAPI\CarpoolService.Contracts\obj\Debug\net6.0\ref\CarpoolService.Contracts.dll
