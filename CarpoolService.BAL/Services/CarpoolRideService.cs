@@ -7,12 +7,12 @@ using CarPoolService.Models.Interfaces.Service_Interface;
 
 namespace CarpoolService.BAL.Services
 {
-    public class CarpoolRideService:ICarpoolService
+    public class CarpoolRideService : ICarpoolService
     {
         private readonly ICarpoolRepository _rideRepository;
         private readonly IMapper _mapper;
 
-        public CarpoolRideService(ICarpoolRepository rideRepository,IMapper mapper)
+        public CarpoolRideService(ICarpoolRepository rideRepository, IMapper mapper)
         {
             _rideRepository = rideRepository;
             _mapper = mapper;
@@ -20,16 +20,15 @@ namespace CarpoolService.BAL.Services
 
         public async Task<CarPoolRideDTO> OfferRide(CarPoolRide poolRide)
         {
-       
+
             var offeredRide = await _rideRepository.OfferRide(poolRide);
 
             return offeredRide;
         }
 
-        public async Task<List<CarPoolRideDTO>> GetOfferedRides(int userId)
+        public async Task<List<CarPoolRideDTO>> GetBookedRides(int userId)
         {
-            // Call repository to get offered rides
-            var offeredRides = await _rideRepository.GetOfferedRidesForUser(userId);
+            var offeredRides = await _rideRepository.GetBookedRidesForUser(userId);
 
             return offeredRides;
         }
@@ -40,16 +39,22 @@ namespace CarpoolService.BAL.Services
             return bookedRide;
         }
 
-        public async Task<List<BookingDTO>> GetBookedRides(int userId)
+        public async Task<List<BookingDTO>> GetOfferedRides(int userId)
         {
-            var bookedRides = await _rideRepository.GetBookedRidesForUser(userId);
+            var bookedRides = await _rideRepository.GetOfferedRidesForUser(userId);
             return bookedRides;
         }
 
         public async Task<List<CarPoolRideDTO>> MatchRides(Ride ride)
         {
             var matchRides = await _rideRepository.MatchRides(ride);
-            return matchRides;  
+            return matchRides;
+        }
+
+        public async Task<List<CityDTO>> GetCities()
+        {
+            var cities = await _rideRepository.GetCities();
+            return cities;
         }
     }
 }

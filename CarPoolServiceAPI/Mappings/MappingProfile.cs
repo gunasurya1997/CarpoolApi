@@ -14,6 +14,10 @@ namespace CarPoolServiceAPI.Mappings
             CreateMap<CarPoolRide, CarPoolRideDTO>();
             CreateMap<Booking,BookingDTO>();
             CreateMap<BookingDTO,Booking>();
+            CreateMap<CityDTO, City>();
+            CreateMap<City, CityDTO>();
+
+
             // Add other mappings here if needed
         }
     }

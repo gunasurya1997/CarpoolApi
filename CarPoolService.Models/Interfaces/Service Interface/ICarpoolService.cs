@@ -6,9 +6,10 @@ namespace CarPoolService.Models.Interfaces.Service_Interface
     public interface ICarpoolService
     {
         Task<CarPoolRideDTO> OfferRide(CarPoolRide poolRide);
-        Task<List<CarPoolRideDTO>> GetOfferedRides(int userId);
+        Task<List<BookingDTO>> GetOfferedRides(int userId);
         Task<BookingDTO> BookRide(Booking bookRide);
-        Task<List<BookingDTO>> GetBookedRides(int userId);
+        Task<List<CarPoolRideDTO>> GetBookedRides(int userId);
         Task<List<CarPoolRideDTO>> MatchRides(Ride ride);
+        Task<List<CityDTO>> GetCities();
     }
 }

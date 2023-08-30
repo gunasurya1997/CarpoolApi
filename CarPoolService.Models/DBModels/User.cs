@@ -1,5 +1,4 @@
 ﻿namespace CarPoolService.Models.DBModels;
-
 public partial class User
 {
     public int UserId { get; set; }

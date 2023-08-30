@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace CarPoolService.DAL;
-
 public partial class CarpoolDbContext : DbContext
 {
     public CarpoolDbContext()
@@ -30,11 +29,12 @@ public partial class CarpoolDbContext : DbContext
     {
         modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.BookingId).HasName("PK__Bookings__73951ACD66F931AD");
+            entity.HasKey(e => e.BookingId).HasName("PK__Bookings__73951ACDF512D655");
 
             entity.Property(e => e.BookingId)
                 .ValueGeneratedNever()
                 .HasColumnName("BookingID");
+            entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.DropLocationId).HasColumnName("DropLocationID");
             entity.Property(e => e.PassengerId).HasColumnName("PassengerID");
             entity.Property(e => e.PickupLocationId).HasColumnName("PickupLocationID");
@@ -43,11 +43,12 @@ public partial class CarpoolDbContext : DbContext
 
         modelBuilder.Entity<CarPoolRide>(entity =>
         {
-            entity.HasKey(e => e.RideId).HasName("PK__CarPoolR__C5B8C4146E5E9879");
+            entity.HasKey(e => e.RideId).HasName("PK__CarPoolR__C5B8C414591FCDD0");
 
             entity.Property(e => e.RideId)
                 .ValueGeneratedNever()
                 .HasColumnName("RideID");
+            entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.DepartureCityId).HasColumnName("DepartureCityID");
             entity.Property(e => e.DestinationCityId).HasColumnName("DestinationCityID");
             entity.Property(e => e.DriverId).HasColumnName("DriverID");
@@ -65,7 +66,9 @@ public partial class CarpoolDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACA9B02520");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC9A9A1D86");
+
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534428E5288").IsUnique();
 
             entity.Property(e => e.UserId)
                 .ValueGeneratedNever()

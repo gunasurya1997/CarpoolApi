@@ -4,7 +4,7 @@
     {
         public Guid BookingId { get; set; }
 
-        public Guid RideId { get; set; }
+        public Guid? RideId { get; set; }
 
         public int PassengerId { get; set; }
 
@@ -16,10 +16,16 @@
 
         public string TimeSlot { get; set; } = null!;
 
-        public string Date { get; set; } = null!;
+        public DateTime Date { get; set; }
 
         public int ReservedSeats { get; set; }
 
         public string Fare { get; set; }
+
+        public string PassengerImage { get; set; }
+
+        public string DropLocation { get; set; }
+
+        public string PickupLocation { get; set; }
     }
 }

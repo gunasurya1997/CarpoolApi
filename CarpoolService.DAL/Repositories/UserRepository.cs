@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using CarpoolService.Contracts;
 using CarPoolService.DAL;
+using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
-using CarPoolService.Models.Interfaces;
 using CarPoolService.Models.Interfaces.Repository_Interfaces;
+using CarPoolService.Models.Interfaces.Service_Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarpoolService.DAL.Repositories
@@ -12,9 +13,9 @@ namespace CarpoolService.DAL.Repositories
     {
         private readonly CarpoolDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IBCrypt _bcrypt;
+        private readonly IBCryptService _bcrypt;
 
-        public UserRepository(CarpoolDbContext dbContext, IMapper mapper, IBCrypt bcrypt)
+        public UserRepository(CarpoolDbContext dbContext, IMapper mapper, IBCryptService bcrypt)
         {
             _dbContext = dbContext;
             _mapper = mapper;
@@ -68,6 +69,36 @@ namespace CarpoolService.DAL.Repositories
 
             return _mapper.Map<UserDto>(existingUser);
         }
+
+
+        public async Task<UserDto> AuthenticateUser(Login loginUser)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == loginUser.Email);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            if (!_bcrypt.VerifyPassword(loginUser.Password, user.Password))
+            {
+                return null;
+            }
+
+            return _mapper.Map<UserDto>(user);
+        }
+        public async Task<UserDto> GetUserById(int userId)
+        {
+            var user = await _dbContext.Users.FindAsync(userId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return _mapper.Map<UserDto>(user);
+        }
+
 
     }
 }
