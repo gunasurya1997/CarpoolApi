@@ -31,7 +31,7 @@ namespace CarpoolService.DAL.Repositories
           .Select(u => u.UserId)
           .FirstOrDefaultAsync();
 
-            var userEntity = new User
+            User userEntity = new User
             {
                 UserId = highestUserId + 1, // Increment the UserId
                 Email = user.Email,
@@ -47,11 +47,10 @@ namespace CarpoolService.DAL.Repositories
         }
         public async Task<UserDto> UpdateUser(int userId, User updatedUser)
         {
-            var existingUser = await _dbContext.Users.FindAsync(userId);
+            User? existingUser = await _dbContext.Users.FindAsync(userId);
 
             if (existingUser == null)
             {
-                // Handle user not found scenario
                 return null;
             }
 
@@ -73,7 +72,7 @@ namespace CarpoolService.DAL.Repositories
 
         public async Task<UserDto> AuthenticateUser(Login loginUser)
         {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == loginUser.Email);
+            User? user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == loginUser.Email);
 
             if (user == null)
             {
@@ -89,7 +88,7 @@ namespace CarpoolService.DAL.Repositories
         }
         public async Task<UserDto> GetUserById(int userId)
         {
-            var user = await _dbContext.Users.FindAsync(userId);
+            User? user = await _dbContext.Users.FindAsync(userId);
 
             if (user == null)
             {

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CarpoolService.Contracts; // Assuming necessary DTO namespaces
+﻿using CarpoolService.Contracts;
 using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
 using CarPoolService.Models.Interfaces.Repository_Interfaces;
@@ -10,12 +9,10 @@ namespace CarpoolService.BAL.Services
     public class CarpoolRideService : ICarpoolService
     {
         private readonly ICarpoolRepository _rideRepository;
-        private readonly IMapper _mapper;
 
-        public CarpoolRideService(ICarpoolRepository rideRepository, IMapper mapper)
+        public CarpoolRideService(ICarpoolRepository rideRepository)
         {
             _rideRepository = rideRepository;
-            _mapper = mapper;
         }
 
         public async Task<CarPoolRideDTO> OfferRide(CarPoolRide poolRide)
@@ -26,7 +23,7 @@ namespace CarpoolService.BAL.Services
             return offeredRide;
         }
 
-        public async Task<List<CarPoolRideDTO>> GetBookedRides(int userId)
+        public async Task<IEnumerable<CarPoolRideDTO>> GetBookedRides(int userId)
         {
             var offeredRides = await _rideRepository.GetBookedRidesForUser(userId);
 
@@ -39,19 +36,19 @@ namespace CarpoolService.BAL.Services
             return bookedRide;
         }
 
-        public async Task<List<BookingDTO>> GetOfferedRides(int userId)
+        public async Task<IEnumerable<BookingDTO>> GetOfferedRides(int userId)
         {
             var bookedRides = await _rideRepository.GetOfferedRidesForUser(userId);
             return bookedRides;
         }
 
-        public async Task<List<CarPoolRideDTO>> MatchRides(Ride ride)
+        public async Task<IEnumerable<CarPoolRideDTO>> MatchRides(Ride ride)
         {
             var matchRides = await _rideRepository.MatchRides(ride);
             return matchRides;
         }
 
-        public async Task<List<CityDTO>> GetCities()
+        public async Task<IEnumerable<CityDTO>> GetCities()
         {
             var cities = await _rideRepository.GetCities();
             return cities;

@@ -19,28 +19,30 @@ namespace CarpoolService.DAL.Repositories
             _mapper = mapper;
 
         }
+
+        // Method for offering a ride
         public async Task<CarPoolRideDTO> OfferRide(CarPoolRide poolRide)
         {
             await _dbContext.CarPoolRides.AddAsync(poolRide);
             await _dbContext.SaveChangesAsync();
             return _mapper.Map<CarPoolRideDTO>(poolRide);
-
         }
 
-
-        public async Task<List<CarPoolRideDTO>> GetBookedRidesForUser(int userId)
+        // Method for getting booked rides for a user
+        public async Task<IEnumerable<CarPoolRideDTO>> GetBookedRidesForUser(int userId)
         {
             try
             {
-                List<CarPoolRide> offeredRides = await _dbContext.CarPoolRides
-                    .Where(ride => _dbContext.Bookings
-                        .Any(booking => booking.PassengerId == userId && booking.RideId == ride.RideId))
-                    .ToListAsync();
-                var cityIds = offeredRides.Select(cpRide => cpRide.DepartureCityId).Union(offeredRides.Select(cpRide => cpRide.DestinationCityId)).Distinct().ToList();
-                var cities = await _dbContext.Cities.Where(city => cityIds.Contains(city.CityId)).ToListAsync();
-                var driverIds = offeredRides.Select(cpRide => cpRide.DriverId).ToList();
-                var drivers = await _dbContext.Users.Where(user => driverIds.Contains(user.UserId)).ToListAsync();
-                var matchedRideDTOs = offeredRides.Select(cpRide => new CarPoolRideDTO
+                IEnumerable<CarPoolRide> bookedRides = await (
+                    from ride in _dbContext.CarPoolRides
+                    where _dbContext.Bookings.Any(booking => booking.PassengerId == userId && booking.RideId == ride.RideId)
+                    select ride).ToListAsync();
+
+                IEnumerable<int> cityIds = bookedRides.Select(cpRide => cpRide.DepartureCityId).Union(bookedRides.Select(cpRide => cpRide.DestinationCityId)).Distinct().ToList();
+                IEnumerable<City> cities = await _dbContext.Cities.Where(city => cityIds.Contains(city.CityId)).ToListAsync();
+                IEnumerable<int> driverIds = bookedRides.Select(cpRide => cpRide.DriverId).ToList();
+                IEnumerable<User> drivers = await _dbContext.Users.Where(user => driverIds.Contains(user.UserId)).ToListAsync();
+                IEnumerable<CarPoolRideDTO> BookedRideDTOs = bookedRides.Select(cpRide => new CarPoolRideDTO
                 {
                     DepartureCityName = cities.FirstOrDefault(c => c.CityId == cpRide.DepartureCityId)?.CityName,
                     DestinationCityName = cities.FirstOrDefault(c => c.CityId == cpRide.DestinationCityId)?.CityName,
@@ -56,11 +58,9 @@ namespace CarpoolService.DAL.Repositories
                     Fare = cpRide.Fare ?? string.Empty,
                     DriverName = drivers.FirstOrDefault(d => d.UserId == cpRide.DriverId)?.UserName,
                     DriverImage = drivers.FirstOrDefault(d => d.UserId == cpRide.DriverId)?.Image,
-                    // Make sure you map other properties of CarPoolRideDTO using cpRide here
                 }).ToList();
 
-                return matchedRideDTOs;
-
+                return BookedRideDTOs;
             }
             catch (Exception e)
             {
@@ -68,12 +68,12 @@ namespace CarpoolService.DAL.Repositories
             }
         }
 
-
+        // Method for booking a ride
         public async Task<BookingDTO> BookRide(Booking bookRide)
         {
             try
             {
-                var offeredRide = await _dbContext.CarPoolRides.FirstOrDefaultAsync(x =>
+                CarPoolRide? offeredRide = await _dbContext.CarPoolRides.FirstOrDefaultAsync(x =>
                         x.DepartureCityId == bookRide.PickupLocationId &&
                         x.DestinationCityId == bookRide.DropLocationId &&
                         x.TimeSlot == bookRide.TimeSlot &&
@@ -83,13 +83,11 @@ namespace CarpoolService.DAL.Repositories
 
                 if (offeredRide != null)
                 {
-                    // Update the offered ride details
                     offeredRide.RideStatus = true;
 
                     await _dbContext.Bookings.AddAsync(bookRide);
                     await _dbContext.SaveChangesAsync();
 
-                    // Update the offered ride in the database
                     _dbContext.CarPoolRides.Update(offeredRide);
                     await _dbContext.SaveChangesAsync();
 
@@ -104,20 +102,21 @@ namespace CarpoolService.DAL.Repositories
             }
         }
 
-
-        public async Task<List<BookingDTO>> GetOfferedRidesForUser(int userId)
+        // Method for getting offered rides for a user
+        public async Task<IEnumerable<BookingDTO>> GetOfferedRidesForUser(int userId)
         {
             try
             {
-                List<Booking> bookedRides = await _dbContext.Bookings
-                    .Where(booking => _dbContext.CarPoolRides
-                        .Any(ride => ride.RideId == booking.RideId && ride.DriverId == userId))
-                    .ToListAsync();
-                var cityIds = bookedRides.Select(bookedRide => bookedRide.PickupLocationId).Union(bookedRides.Select(bookedRide => bookedRide.DropLocationId)).Distinct().ToList();
-                var cities = await _dbContext.Cities.Where(city => cityIds.Contains(city.CityId)).ToListAsync();
-                var passengerIds = bookedRides.Select(bookedRide => bookedRide.PassengerId).ToList();
-                var passengers = await _dbContext.Users.Where(user => passengerIds.Contains(user.UserId)).ToListAsync();
-                var matchedRideDTOs = bookedRides.Select(bookedRide => new BookingDTO
+                IEnumerable<Booking> offeredRides = await (
+                from booking in _dbContext.Bookings
+                where _dbContext.CarPoolRides.Any(ride => ride.RideId == booking.RideId && ride.DriverId == userId)
+                select booking).ToListAsync();
+
+                IEnumerable<int> cityIds = offeredRides.Select(bookedRide => bookedRide.PickupLocationId).Union(offeredRides.Select(bookedRide => bookedRide.DropLocationId)).Distinct().ToList();
+                IEnumerable<City> cities = await _dbContext.Cities.Where(city => cityIds.Contains(city.CityId)).ToListAsync();
+                IEnumerable<int> passengerIds = offeredRides.Select(bookedRide => bookedRide.PassengerId).ToList();
+                IEnumerable<User> passengers = await _dbContext.Users.Where(user => passengerIds.Contains(user.UserId)).ToListAsync();
+                IEnumerable<BookingDTO> OfferedRideDTOs = offeredRides.Select(bookedRide => new BookingDTO
                 {
                     PickupLocation = cities.FirstOrDefault(c => c.CityId == bookedRide.PickupLocationId)?.CityName,
                     DropLocation = cities.FirstOrDefault(c => c.CityId == bookedRide.DropLocationId)?.CityName,
@@ -131,10 +130,9 @@ namespace CarpoolService.DAL.Repositories
                     Fare = bookedRide.Fare,
                     PassengerName = passengers.FirstOrDefault(d => d.UserId == bookedRide.PassengerId)?.UserName,
                     PassengerImage = passengers.FirstOrDefault(d => d.UserId == bookedRide.PassengerId)?.Image,
-                    // Make sure you map other properties of CarPoolRideDTO using cpRide here
                 }).ToList();
 
-                return matchedRideDTOs;
+                return OfferedRideDTOs;
 
             }
             catch (Exception e)
@@ -143,25 +141,26 @@ namespace CarpoolService.DAL.Repositories
             }
         }
 
-
-        public async Task<List<CarPoolRideDTO>> MatchRides(Ride ride)
+        // Method to get matching rides based on user's ride request
+        public async Task<IEnumerable<CarPoolRideDTO>> MatchRides(Ride ride)
         {
             try
             {
-                var matchedRides = await _dbContext.CarPoolRides
+                IEnumerable<CarPoolRide> matchedRides = await _dbContext.CarPoolRides
                     .Where(cpRide =>
                          cpRide.DepartureCityId == ride.StartPoint &&
                          cpRide.DestinationCityId == ride.EndPoint &&
                          cpRide.Date == ride.Date &&
                          cpRide.TimeSlot == ride.TimeSlot &&
+                         cpRide.DriverId != ride.UserId &&
                          cpRide.RideStatus == false)
                     .ToListAsync();
 
-                var cityIds = matchedRides.Select(cpRide => cpRide.DepartureCityId).Union(matchedRides.Select(cpRide => cpRide.DestinationCityId)).Distinct().ToList();
-                var cities = await _dbContext.Cities.Where(city => cityIds.Contains(city.CityId)).ToListAsync();
-                var driverIds = matchedRides.Select(cpRide => cpRide.DriverId).ToList();
-                var drivers = await _dbContext.Users.Where(user => driverIds.Contains(user.UserId)).ToListAsync();
-                var matchedRideDTOs = matchedRides.Select(cpRide => new CarPoolRideDTO
+                IEnumerable<int> cityIds = matchedRides.Select(cpRide => cpRide.DepartureCityId).Union(matchedRides.Select(cpRide => cpRide.DestinationCityId)).Distinct().ToList();
+                IEnumerable<City> cities = await _dbContext.Cities.Where(city => cityIds.Contains(city.CityId)).ToListAsync();
+                IEnumerable<int> driverIds = matchedRides.Select(cpRide => cpRide.DriverId).ToList();
+                IEnumerable<User> drivers = await _dbContext.Users.Where(user => driverIds.Contains(user.UserId)).ToListAsync();
+                IEnumerable<CarPoolRideDTO> matchedRideDTOs = matchedRides.Select(cpRide => new CarPoolRideDTO
                 {
                     DepartureCityName = cities.FirstOrDefault(c => c.CityId == cpRide.DepartureCityId)?.CityName,
                     DestinationCityName = cities.FirstOrDefault(c => c.CityId == cpRide.DestinationCityId)?.CityName,
@@ -177,7 +176,6 @@ namespace CarpoolService.DAL.Repositories
                     Fare = cpRide.Fare,
                     DriverName = drivers.FirstOrDefault(d => d.UserId == cpRide.DriverId)?.UserName,
                     DriverImage = drivers.FirstOrDefault(d => d.UserId == cpRide.DriverId)?.Image,
-                    // Make sure you map other properties of CarPoolRideDTO using cpRide here
                 }).ToList();
 
                 return matchedRideDTOs;
@@ -189,13 +187,13 @@ namespace CarpoolService.DAL.Repositories
         }
 
 
-
-        public async Task<List<CityDTO>> GetCities()
+        // Method for getting a list of cities
+        public async Task<IEnumerable<CityDTO>> GetCities()
         {
             try
             {
                 IEnumerable<City> cities = await _dbContext.Cities.ToListAsync();
-                return _mapper.Map<List<CityDTO>>(cities);
+                return _mapper.Map<IEnumerable<CityDTO>>(cities);
             }
             catch (Exception e)
             {

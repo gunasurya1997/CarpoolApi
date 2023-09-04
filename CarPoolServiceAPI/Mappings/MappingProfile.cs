@@ -8,17 +8,14 @@ namespace CarPoolServiceAPI.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<User, UserDto>(); // Map User to UserDto
-            CreateMap<UserDto, User>(); // Reverse mapping
+            CreateMap<User, UserDto>(); 
+            CreateMap<UserDto, User>();
             CreateMap<CarPoolRideDTO, CarPoolRide>();
             CreateMap<CarPoolRide, CarPoolRideDTO>();
             CreateMap<Booking,BookingDTO>();
             CreateMap<BookingDTO,Booking>();
             CreateMap<CityDTO, City>();
             CreateMap<City, CityDTO>();
-
-
-            // Add other mappings here if needed
         }
     }
 }

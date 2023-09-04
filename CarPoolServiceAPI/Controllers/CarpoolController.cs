@@ -2,6 +2,8 @@
 using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
 using CarPoolService.Models.Interfaces.Service_Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -9,6 +11,7 @@ namespace CarPoolServiceAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CarpoolController : ControllerBase
     {
         private readonly ICarpoolService _rideService;
@@ -33,17 +36,17 @@ namespace CarPoolServiceAPI.Controllers
         }
 
         [HttpGet("offered-rides/{userId}")]
-        public async Task<GenericApiResponse<List<BookingDTO>>> GetOfferedRides(int userId)
+        public async Task<GenericApiResponse<IEnumerable<BookingDTO>>> GetOfferedRides([FromRoute] int userId)
         {
             try
             {
-                List<BookingDTO> offeredRides = await _rideService.GetOfferedRides(userId);
-                return new GenericApiResponse<List<BookingDTO>>().CreateApiResponse(true, HttpStatusCode.OK, offeredRides);
+                IEnumerable<BookingDTO> offeredRides = await _rideService.GetOfferedRides(userId);
+                return new GenericApiResponse<IEnumerable<BookingDTO>>().CreateApiResponse(true, HttpStatusCode.OK, offeredRides);
             }
             catch (Exception ex)
             {
-                return new GenericApiResponse<List<BookingDTO>>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
-            }
+                return new GenericApiResponse<IEnumerable<BookingDTO>>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
+            }               
         }
 
         [HttpPost("book-ride")]
@@ -60,44 +63,44 @@ namespace CarPoolServiceAPI.Controllers
             }
         }
         [HttpGet("booked-rides/{userId}")]
-        public async Task<GenericApiResponse<List<CarPoolRideDTO>>> GetBookedRides(int userId)
+        public async Task<GenericApiResponse<IEnumerable<CarPoolRideDTO>>> GetBookedRides([FromRoute] int userId)
         {
             try
             {
-                List<CarPoolRideDTO> bookedRides = await _rideService.GetBookedRides(userId);
-                return new GenericApiResponse<List<CarPoolRideDTO>>().CreateApiResponse(true, HttpStatusCode.OK, bookedRides);
+                IEnumerable<CarPoolRideDTO> bookedRides = await _rideService.GetBookedRides(userId);
+                return new GenericApiResponse<IEnumerable<CarPoolRideDTO>>().CreateApiResponse(true, HttpStatusCode.OK, bookedRides);
             }
             catch (Exception ex)
             {
-                return new GenericApiResponse<List<CarPoolRideDTO>>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
+                return new GenericApiResponse<IEnumerable<CarPoolRideDTO>>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
             }
         }
 
         [HttpPost("match-rides")]
-        public async Task<GenericApiResponse<List<CarPoolRideDTO>>> MatchRides([FromBody] Ride ride)
+        public async Task<GenericApiResponse<IEnumerable<CarPoolRideDTO>>> MatchRides([FromBody] Ride ride)
         {
             try
             {
-                List<CarPoolRideDTO> matchedRides = await _rideService.MatchRides(ride);
-                return new GenericApiResponse<List<CarPoolRideDTO>>().CreateApiResponse(true, HttpStatusCode.OK, matchedRides);
+                IEnumerable<CarPoolRideDTO> matchedRides = await _rideService.MatchRides(ride);
+                return new GenericApiResponse<IEnumerable<CarPoolRideDTO>>().CreateApiResponse(true, HttpStatusCode.OK, matchedRides);
             }
             catch (Exception ex)
             {
-                return new GenericApiResponse<List<CarPoolRideDTO>>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
+                return new GenericApiResponse<IEnumerable<CarPoolRideDTO>>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
             }
         }
 
         [HttpGet("cities")]
-        public async Task<GenericApiResponse<List<CityDTO>>> GetCities()
+        public async Task<GenericApiResponse<IEnumerable<CityDTO>>> GetCities()
         {
             try
             {
-                List<CityDTO> cities = await _rideService.GetCities();
-                return new GenericApiResponse<List<CityDTO>>().CreateApiResponse(true, HttpStatusCode.OK, cities);
+                IEnumerable<CityDTO> cities = await _rideService.GetCities();
+                return new GenericApiResponse<IEnumerable<CityDTO>>().CreateApiResponse(true, HttpStatusCode.OK, cities);
             }
             catch (Exception ex)
             {
-                return new GenericApiResponse<List<CityDTO>>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
+                return new GenericApiResponse<IEnumerable<CityDTO>>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
             }
         }
 

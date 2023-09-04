@@ -4,7 +4,7 @@
     {
         public Guid BookingId { get; set; }
 
-        public Guid? RideId { get; set; }
+        public Guid RideId { get; set; }
 
         public int PassengerId { get; set; }
 

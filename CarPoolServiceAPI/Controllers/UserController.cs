@@ -26,7 +26,7 @@ namespace CarPoolServiceAPI.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<GenericApiResponse<UserDto>> AddUser(User user)
+        public async Task<GenericApiResponse<UserDto>> AddUser([FromBody]User user)
         {
             try
             {
@@ -43,13 +43,13 @@ namespace CarPoolServiceAPI.Controllers
             }
             catch (Exception ex)
             {
-                return new GenericApiResponse<UserDto>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, "Failed to Add User!!!");
+                return new GenericApiResponse<UserDto>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null,ex.Message);
             }
         }
 
 
         [HttpPut("register/{userId}")]
-        public async Task<GenericApiResponse<UserDto>> UpdateUser(int userId, User user)
+        public async Task<GenericApiResponse<UserDto>> UpdateUser([FromRoute] int userId, [FromBody]User user)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace CarPoolServiceAPI.Controllers
         }
 
         [HttpGet("{userId}")]
-        public async Task<GenericApiResponse<UserDto>> GetUserById(int userId)
+        public async Task<GenericApiResponse<UserDto>> GetUserById([FromRoute] int userId)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace CarPoolServiceAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<GenericApiResponse<string>> Login(Login user)
+        public async Task<GenericApiResponse<string>> Login([FromBody]Login user)
         {
             try
             {

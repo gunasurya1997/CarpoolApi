@@ -16,7 +16,7 @@ namespace CarpoolService.BAL.Services
 
             var claims = new List<Claim>
             {
-                new Claim("UserId", authenticatedUser.UserId.ToString()), // Use the custom claim type for user ID
+                new Claim("UserId", authenticatedUser.UserId.ToString()), 
                 new Claim(ClaimTypes.Email, authenticatedUser.Email),
             };
 
