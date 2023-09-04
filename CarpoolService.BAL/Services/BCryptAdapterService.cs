@@ -1,8 +1,8 @@
-﻿using CarPoolService.Models.Interfaces;
+﻿using CarPoolService.Models.Interfaces.Service_Interface;
 
-namespace CarPoolService.Models
+namespace CarpoolService.BAL.Services
 {
-    public class BCryptAdapter:IBCrypt
+    public class BCryptAdapterService:IBCryptService
     {
         public string HashPassword(string password)
         {

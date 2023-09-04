@@ -101,6 +101,25 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.10.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -1477,6 +1496,21 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.0": {
+      "sha512": "eIhpX25uUn33Ornnh718V2G/nESvk3TNX2FjTarv634GLfE50Fhz2geJ/QYpSmFaUIQ1hkZPfd9i0LcpZ9bfLQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.6.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -3945,6 +3979,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "CarPoolService.Models >= 1.0.0",
       "CarpoolService.BAL >= 1.0.0",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
@@ -3958,11 +3993,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj",
+      "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj",
       "projectName": "CarPoolServiceAPI",
-      "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj",
+      "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj",
       "packagesPath": "C:\\Users\\surya.g\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolServiceAPI\\obj\\",
+      "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolServiceAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\surya.g\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3980,11 +4015,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.BAL\\CarpoolService.BAL.csproj": {
-              "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.BAL\\CarpoolService.BAL.csproj"
+            "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.BAL\\CarpoolService.BAL.csproj": {
+              "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.BAL\\CarpoolService.BAL.csproj"
             },
-            "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj": {
-              "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj"
+            "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj": {
+              "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj"
             }
           }
         }
@@ -4006,6 +4041,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[12.0.1, )"
+          },
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[6.0.0, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",

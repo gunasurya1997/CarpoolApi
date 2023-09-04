@@ -1,24 +1,39 @@
-﻿namespace CarPoolService.Models.DBModels;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public partial class CarPoolRide
+namespace CarPoolService.Models.DBModels
 {
-    public Guid RideId { get; set; }
+    [Table("CarPoolRides")]
+    public partial class CarPoolRide
+    {
+        [Key]
+        public Guid RideId { get; set; }
 
-    public int? DriverId { get; set; }
+        [Required]
+        public int DriverId { get; set; }
 
-    public int? DepartureCityId { get; set; }
+        [Required]
+        public int DepartureCityId { get; set; }
 
-    public int? DestinationCityId { get; set; }
+        [Required]
+        public int DestinationCityId { get; set; }
 
-    public string? Stops { get; set; }
+        [Required]
+        public string Stops { get; set; } = null!;
 
-    public string? TimeSlot { get; set; }
+        [Required]
+        public string TimeSlot { get; set; } = null!;
 
-    public string? Date { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
 
-    public int? AvailableSeats { get; set; }
+        [Required]
+        public int AvailableSeats { get; set; }
 
-    public bool? RideStatus { get; set; }
+        [Required]
+        public bool RideStatus { get; set; }
 
-    public string? Fare { get; set; }
+        [Required]
+        public string Fare { get; set; }
+    }
 }

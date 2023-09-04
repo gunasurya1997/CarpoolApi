@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj",
+      "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj",
       "projectName": "CarpoolService.Contracts",
-      "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj",
+      "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj",
       "packagesPath": "C:\\Users\\surya.g\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\obj\\",
+      "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\surya.g\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -15,12 +15,18 @@
 
         public string TimeSlot { get; set; } = null!;
 
-        public string Date { get; set; } = null!;
+        public DateTime Date { get; set; }
 
         public int AvailableSeats { get; set; }
 
         public bool RideStatus { get; set; }
 
         public string Fare { get; set; }
+
+        public string DriverImage { get; set;}
+
+        public string DepartureCityName { get; set; }
+
+        public string DestinationCityName { get; set; }    
     }
 }

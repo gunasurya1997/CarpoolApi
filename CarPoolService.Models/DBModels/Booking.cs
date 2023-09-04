@@ -1,22 +1,36 @@
-﻿namespace CarPoolService.Models.DBModels;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public partial class Booking
+namespace CarPoolService.Models.DBModels
 {
-    public Guid BookingId { get; set; }
+    [Table("Bookings")]
+    public partial class Booking
+    {
+        [Key]
+        public Guid BookingId { get; set; }
 
-    public Guid? RideId { get; set; }
+        [Required]
+        public Guid RideId { get; set; }
 
-    public int? PassengerId { get; set; }
+        [Required]
+        public int PassengerId { get; set; }
 
-    public int? PickupLocationId { get; set; }
+        [Required]
+        public int PickupLocationId { get; set; }
 
-    public int? DropLocationId { get; set; }
+        [Required]
+        public int DropLocationId { get; set; }
 
-    public string? TimeSlot { get; set; }
+        [Required]
+        public string TimeSlot { get; set; }
 
-    public string? Date { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
 
-    public int? ReservedSeats { get; set; }
+        [Required]
+        public int ReservedSeats { get; set; }
 
-    public string? Fare { get; set; }
+        [Required]
+        public string Fare { get; set; }
+    }
 }

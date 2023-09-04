@@ -1,6 +1,6 @@
-﻿namespace CarPoolService.Models.Interfaces
+﻿namespace CarPoolService.Models.Interfaces.Service_Interface
 {
-    public interface IBCrypt
+    public interface IBCryptService
     {
         string HashPassword(string password);
         bool VerifyPassword(string password, string hashedPassword);

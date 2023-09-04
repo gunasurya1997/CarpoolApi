@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj": {}
+    "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.BAL\\CarpoolService.BAL.csproj": {
+    "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.BAL\\CarpoolService.BAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.BAL\\CarpoolService.BAL.csproj",
+        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.BAL\\CarpoolService.BAL.csproj",
         "projectName": "CarpoolService.BAL",
-        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.BAL\\CarpoolService.BAL.csproj",
+        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.BAL\\CarpoolService.BAL.csproj",
         "packagesPath": "C:\\Users\\surya.g\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.BAL\\obj\\",
+        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.BAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\surya.g\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.DAL\\CarpoolService.DAL.csproj": {
-                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.DAL\\CarpoolService.DAL.csproj"
+              "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.DAL\\CarpoolService.DAL.csproj": {
+                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.DAL\\CarpoolService.DAL.csproj"
               },
-              "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj": {
-                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj"
+              "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj": {
+                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj"
               }
             }
           }
@@ -66,14 +66,14 @@
         }
       }
     },
-    "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj": {
+    "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj",
         "projectName": "CarpoolService.Contracts",
-        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj",
+        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj",
         "packagesPath": "C:\\Users\\surya.g\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\obj\\",
+        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\surya.g\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -121,14 +121,14 @@
         }
       }
     },
-    "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.DAL\\CarpoolService.DAL.csproj": {
+    "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.DAL\\CarpoolService.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.DAL\\CarpoolService.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.DAL\\CarpoolService.DAL.csproj",
         "projectName": "CarpoolService.DAL",
-        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.DAL\\CarpoolService.DAL.csproj",
+        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.DAL\\CarpoolService.DAL.csproj",
         "packagesPath": "C:\\Users\\surya.g\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.DAL\\obj\\",
+        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\surya.g\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -145,11 +145,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj": {
-                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj"
+              "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj": {
+                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj"
               },
-              "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj": {
-                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj"
+              "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj": {
+                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj"
               }
             }
           }
@@ -189,14 +189,14 @@
         }
       }
     },
-    "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj": {
+    "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj",
+        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj",
         "projectName": "CarPoolService.Models",
-        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj",
+        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj",
         "packagesPath": "C:\\Users\\surya.g\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\obj\\",
+        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\surya.g\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -213,8 +213,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj": {
-                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj"
+              "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj": {
+                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj"
               }
             }
           }
@@ -268,14 +268,14 @@
         }
       }
     },
-    "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj": {
+    "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj",
+        "projectUniqueName": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj",
         "projectName": "CarPoolServiceAPI",
-        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj",
+        "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj",
         "packagesPath": "C:\\Users\\surya.g\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolServiceAPI\\obj\\",
+        "outputPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolServiceAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\surya.g\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -293,11 +293,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.BAL\\CarpoolService.BAL.csproj": {
-                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarpoolService.BAL\\CarpoolService.BAL.csproj"
+              "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.BAL\\CarpoolService.BAL.csproj": {
+                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.BAL\\CarpoolService.BAL.csproj"
               },
-              "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj": {
-                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarPoolServiceAPI\\CarPoolService.Models\\CarPoolService.Models.csproj"
+              "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj": {
+                "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolService.Models\\CarPoolService.Models.csproj"
               }
             }
           }
@@ -319,6 +319,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

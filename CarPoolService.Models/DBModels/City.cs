@@ -1,8 +1,14 @@
-﻿namespace CarPoolService.Models.DBModels;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public partial class City
+namespace CarPoolService.Models.DBModels
 {
-    public int CityId { get; set; }
+    [Table("Cities")]
+    public partial class City
+    {
+        [Key]
+        public int CityId { get; set; }
 
-    public string? CityName { get; set; }
+        public string? CityName { get; set; }
+    }
 }
