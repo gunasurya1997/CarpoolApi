@@ -1,4 +1,4 @@
-﻿namespace CarPoolService.Models.Interfaces.Service_Interface
+﻿namespace CarPoolService.Contracts.Interfaces.Service_Interface
 {
     public interface IBCryptService
     {

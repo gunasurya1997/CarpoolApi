@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
+using CarpoolService.Common.Exceptions;
 using CarpoolService.Contracts;
+using CarPoolService.Contracts.Interfaces.Repository_Interfaces;
 using CarPoolService.DAL;
-using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
-using CarPoolService.Models.Interfaces.Repository_Interfaces;
-using CarPoolService.Models.Interfaces.Service_Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarpoolService.DAL.Repositories
@@ -13,91 +12,63 @@ namespace CarpoolService.DAL.Repositories
     {
         private readonly CarpoolDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IBCryptService _bcrypt;
 
-        public UserRepository(CarpoolDbContext dbContext, IMapper mapper, IBCryptService bcrypt)
+        public UserRepository(CarpoolDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _bcrypt = bcrypt;
         }
 
-        public async Task<UserDto> AddUser(User user)
+        // Register a new user
+        public async Task<UserDTO> RegisterUser(User user)
         {
-            string hashedPassword = _bcrypt.HashPassword(user.Password);
-
-            int highestUserId = await _dbContext.Users
-          .OrderByDescending(u => u.UserId)
-          .Select(u => u.UserId)
-          .FirstOrDefaultAsync();
-
-            User userEntity = new User
+            try
             {
-                UserId = highestUserId + 1, // Increment the UserId
-                Email = user.Email,
-                Password = hashedPassword,
-                UserName = user.UserName,
-                Image = user.Image
-            };
-
-            _dbContext.Users.Add(userEntity);
-            await _dbContext.SaveChangesAsync();
-
-            return _mapper.Map<UserDto>(userEntity);
+                _dbContext.Users.Add(user);
+                await _dbContext.SaveChangesAsync();
+                return _mapper.Map<UserDTO>(user);
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new Exception("Error adding a new user. Database update failed.", ex);
+            }
         }
-        public async Task<UserDto> UpdateUser(int userId, User updatedUser)
+
+        // Update user information
+        public async Task<UserDTO> UpdateUser(User updatedUser)
         {
-            User? existingUser = await _dbContext.Users.FindAsync(userId);
-
-            if (existingUser == null)
+            try
             {
-                return null;
+                _dbContext.Entry(updatedUser).State = EntityState.Modified; 
+                await _dbContext.SaveChangesAsync();
+
+                return _mapper.Map<UserDTO>(updatedUser);
             }
-
-            existingUser.Email = updatedUser.Email;
-            existingUser.UserName = updatedUser.UserName;
-            existingUser.Image = updatedUser.Image;
-
-            if (!string.IsNullOrEmpty(updatedUser.Password))
+            catch (DbUpdateException ex)
             {
-                string hashedPassword = _bcrypt.HashPassword(updatedUser.Password);
-                existingUser.Password = hashedPassword;
+                throw new Exception("Error updating user information. Database update failed.", ex);
             }
-
-            await _dbContext.SaveChangesAsync();
-
-            return _mapper.Map<UserDto>(existingUser);
         }
 
-
-        public async Task<UserDto> AuthenticateUser(Login loginUser)
+        // Get a user by ID
+        public async Task<UserDTO> GetUserById(int userId)
         {
-            User? user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == loginUser.Email);
-
-            if (user == null)
+            try
             {
-                return null;
+                User? user = await _dbContext.Users.FindAsync(userId) ?? throw new NotFoundException();
+                return _mapper.Map<UserDTO>(user);
             }
-
-            if (!_bcrypt.VerifyPassword(loginUser.Password, user.Password))
+            catch (Exception ex)
             {
-                return null;
+                throw new Exception("Error getting user by ID.", ex);
             }
-
-            return _mapper.Map<UserDto>(user);
         }
-        public async Task<UserDto> GetUserById(int userId)
+
+        // Check if an email is already taken
+        public async Task<bool> IsEmailTaken(string email)
         {
-            User? user = await _dbContext.Users.FindAsync(userId);
-
-            if (user == null)
-            {
-                return null;
-            }
-
-            return _mapper.Map<UserDto>(user);
+            return await _dbContext.Users.AnyAsync(u => u.Email == email);
         }
-
 
     }
 }

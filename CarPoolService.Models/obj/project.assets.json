@@ -1168,16 +1168,6 @@
             "rid": "win"
           }
         }
-      },
-      "CarpoolService.Contracts/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/CarpoolService.Contracts.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CarpoolService.Contracts.dll": {}
-        }
       }
     }
   },
@@ -3554,17 +3544,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "CarpoolService.Contracts/1.0.0": {
-      "type": "project",
-      "path": "../CarpoolService.Contracts/CarpoolService.Contracts.csproj",
-      "msbuildProject": "../CarpoolService.Contracts/CarpoolService.Contracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "BCrypt.Net-Next >= 4.0.3",
-      "CarpoolService.Contracts >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.9"
@@ -3596,11 +3580,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj": {
-              "projectPath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarpoolService.Contracts\\CarpoolService.Contracts.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

@@ -816,7 +816,15 @@
           "CarpoolService.BAL.dll": {}
         }
       },
+      "CarpoolService.Common/1.0.0": {
+        "runtime": {
+          "CarpoolService.Common.dll": {}
+        }
+      },
       "CarpoolService.Contracts/1.0.0": {
+        "dependencies": {
+          "CarPoolService.Models": "1.0.0"
+        },
         "runtime": {
           "CarpoolService.Contracts.dll": {}
         }
@@ -825,6 +833,7 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "CarPoolService.Models": "1.0.0",
+          "CarpoolService.Common": "1.0.0",
           "CarpoolService.Contracts": "1.0.0"
         },
         "runtime": {
@@ -834,7 +843,6 @@
       "CarPoolService.Models/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
-          "CarpoolService.Contracts": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.9"
         },
@@ -1404,6 +1412,11 @@
       "hashPath": "system.windows.extensions.5.0.0.nupkg.sha512"
     },
     "CarpoolService.BAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CarpoolService.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,5 +1,5 @@
 ﻿using CarpoolService.Contracts;
-using CarPoolService.Models.Interfaces.Service_Interface;
+using CarPoolService.Contracts.Interfaces.Service_Interface;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -9,7 +9,7 @@ namespace CarpoolService.BAL.Services
 {
     public class TokenService : ITokenService
     {
-        public string GenerateToken(string issuer, string audience, string key, UserDto authenticatedUser)
+        public string GenerateToken(string issuer, string audience, string key, UserDTO authenticatedUser)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

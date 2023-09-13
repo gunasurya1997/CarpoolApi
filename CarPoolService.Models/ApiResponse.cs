@@ -2,16 +2,16 @@
 
 namespace CarPoolService.Models
 {
-    public class GenericApiResponse<T>
+    public class ApiResponse<T>
     {
         public bool IsSuccess { get; set; }
         public HttpStatusCode HttpStatusCode { get; set; }
         public string ErrorMessage { get; set; }
         public T Data { get; set; }
 
-        public GenericApiResponse<T> CreateApiResponse(bool isSuccess, HttpStatusCode httpStatusCode, T data, string errorMessage = null)
+        public ApiResponse<T> CreateApiResponse(bool isSuccess, HttpStatusCode httpStatusCode, T data, string errorMessage = null)
         {
-            return new GenericApiResponse<T>
+            return new ApiResponse<T>
             {
                 IsSuccess = isSuccess,
                 HttpStatusCode = httpStatusCode,

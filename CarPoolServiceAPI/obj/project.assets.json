@@ -1338,9 +1338,22 @@
           "bin/placeholder/CarpoolService.BAL.dll": {}
         }
       },
+      "CarpoolService.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CarpoolService.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CarpoolService.Common.dll": {}
+        }
+      },
       "CarpoolService.Contracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "CarPoolService.Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/CarpoolService.Contracts.dll": {}
         },
@@ -1354,6 +1367,7 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "CarPoolService.Models": "1.0.0",
+          "CarpoolService.Common": "1.0.0",
           "CarpoolService.Contracts": "1.0.0"
         },
         "compile": {
@@ -1368,7 +1382,6 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
-          "CarpoolService.Contracts": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.9"
         },
@@ -3956,6 +3969,11 @@
       "type": "project",
       "path": "../CarpoolService.BAL/CarpoolService.BAL.csproj",
       "msbuildProject": "../CarpoolService.BAL/CarpoolService.BAL.csproj"
+    },
+    "CarpoolService.Common/1.0.0": {
+      "type": "project",
+      "path": "../CarpoolService.Common/CarpoolService.Common.csproj",
+      "msbuildProject": "../CarpoolService.Common/CarpoolService.Common.csproj"
     },
     "CarpoolService.Contracts/1.0.0": {
       "type": "project",

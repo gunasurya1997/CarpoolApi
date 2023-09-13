@@ -1,6 +1,6 @@
 ﻿namespace CarpoolService.Contracts
 {
-    public class UserDto
+    public class UserDTO
     {
         public int UserId { get; set; }
 

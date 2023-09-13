@@ -197,3 +197,5 @@ C:\Users\surya.g\source\repos\CarpoolApi\CarPoolServiceAPI\obj\Debug\net6.0\scop
 C:\Users\surya.g\source\repos\CarpoolApi\CarPoolServiceAPI\obj\Debug\net6.0\CarPoolServiceAPI.csproj.CopyComplete
 C:\Users\surya.g\source\repos\CarpoolApi\CarPoolServiceAPI\obj\Debug\net6.0\CarPoolServiceAPI.genruntimeconfig.cache
 C:\Users\surya.g\source\repos\CarpoolApi\CarPoolServiceAPI\obj\Debug\net6.0\ref\CarPoolServiceAPI.dll
+C:\Users\surya.g\source\repos\CarpoolApi\CarPoolServiceAPI\bin\Debug\net6.0\CarpoolService.Common.dll
+C:\Users\surya.g\source\repos\CarpoolApi\CarPoolServiceAPI\bin\Debug\net6.0\CarpoolService.Common.pdb

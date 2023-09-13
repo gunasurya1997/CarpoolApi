@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CarpoolService.Common\CarpoolService.Common.csproj" />
     <ProjectReference Include="..\CarpoolService.Contracts\CarpoolService.Contracts.csproj" />
     <ProjectReference Include="..\CarPoolService.Models\CarPoolService.Models.csproj" />
   </ItemGroup>

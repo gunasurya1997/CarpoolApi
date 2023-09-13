@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using CarpoolService.Contracts;
+using CarPoolService.Contracts.Interfaces.Service_Interface;
 using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
-using CarPoolService.Models.Interfaces.Service_Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -25,8 +25,9 @@ namespace CarPoolServiceAPI.Controllers
             _config = config;
         }
 
+        // Register a new user via POST request
         [HttpPost("register")]
-        public async Task<GenericApiResponse<UserDto>> AddUser([FromBody]User user)
+        public async Task<ApiResponse<UserDTO>> RegisterUser([FromBody]User user)
         {
             try
             {
@@ -34,66 +35,68 @@ namespace CarPoolServiceAPI.Controllers
 
                 if (emailExists)
                 {
-                    return new GenericApiResponse<UserDto>().CreateApiResponse(false, HttpStatusCode.BadRequest, null, "Email already taken");
+                    return new ApiResponse<UserDTO>().CreateApiResponse(false, HttpStatusCode.BadRequest, null, "Email already taken");
                 }
 
-                UserDto createdUser = await _userService.CreateUserAsync(user);
-                UserDto userDto = _mapper.Map<UserDto>(createdUser);
-                return new GenericApiResponse<UserDto>().CreateApiResponse(true, HttpStatusCode.OK, userDto);
+                UserDTO createdUser = await _userService.RegisterUserAsync(user);
+                UserDTO userDto = _mapper.Map<UserDTO>(createdUser);
+                return new ApiResponse<UserDTO>().CreateApiResponse(true, HttpStatusCode.OK, userDto);
             }
             catch (Exception ex)
             {
-                return new GenericApiResponse<UserDto>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null,ex.Message);
+                return new ApiResponse<UserDTO>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null,ex.Message);
             }
         }
 
-
-        [HttpPut("register/{userId}")]
-        public async Task<GenericApiResponse<UserDto>> UpdateUser([FromRoute] int userId, [FromBody]User user)
+        // Update user information via PUT request
+        [HttpPut("update/{userId}")]
+        public async Task<ApiResponse<UserDTO>> UpdateUser([FromRoute] int userId, [FromBody]User user)
         {
             try
             {
-                UserDto updatedUser = await _userService.UpdateUserAsync(userId, user);
+                UserDTO updatedUser = await _userService.UpdateUserAsync(userId, user);
                 if (updatedUser == null)
                 {
-                    return new GenericApiResponse<UserDto>().CreateApiResponse(false, HttpStatusCode.NotFound, null, "User not found");
+                    return new ApiResponse<UserDTO>().CreateApiResponse(false, HttpStatusCode.NotFound, null, "User not found");
                 }
-                return new GenericApiResponse<UserDto>().CreateApiResponse(true, HttpStatusCode.OK, updatedUser);
+                return new ApiResponse<UserDTO>().CreateApiResponse(true, HttpStatusCode.OK, updatedUser);
             }
             catch (Exception ex)
             {
-                return new GenericApiResponse<UserDto>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
+                return new ApiResponse<UserDTO>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
             }
         }
 
+        // Get user by ID via GET request
         [HttpGet("{userId}")]
-        public async Task<GenericApiResponse<UserDto>> GetUserById([FromRoute] int userId)
+        public async Task<ApiResponse<UserDTO>> GetUserById([FromRoute] int userId)
         {
             try
             {
-                UserDto user = await _userService.GetUserByIdAsync(userId);
+                UserDTO user = await _userService.GetUserByIdAsync(userId);
                 if (user == null)
                 {
-                    return new GenericApiResponse<UserDto>().CreateApiResponse(false, HttpStatusCode.NotFound, null, "User not found");
+                    return new ApiResponse<UserDTO>().CreateApiResponse(false, HttpStatusCode.NotFound, null, "User not found");
                 }
-                return new GenericApiResponse<UserDto>().CreateApiResponse(true, HttpStatusCode.OK, user);
+                return new ApiResponse<UserDTO>().CreateApiResponse(true, HttpStatusCode.OK, user);
             }
             catch (Exception ex)
             {
-                return new GenericApiResponse<UserDto>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
+                return new ApiResponse<UserDTO>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
             }
         }
 
+        // Authenticate user via POST request
         [HttpPost("login")]
-        public async Task<GenericApiResponse<string>> Login([FromBody]Login user)
+        public async Task<ApiResponse<string>> Login([FromBody]Login user)
         {
             try
             {
-                UserDto authenticatedUser = await _userService.AuthenticateUserAsync(user);
+                UserDTO authenticatedUser = await _userService.AuthenticateUserAsync(user);
 
                 if (authenticatedUser == null)
                 {
-                    return new GenericApiResponse<string>().CreateApiResponse(false, HttpStatusCode.BadRequest, null, "User not Found");
+                    return new ApiResponse<string>().CreateApiResponse(false, HttpStatusCode.BadRequest, null, "User not Found");
                 }
                 var token = _tokenService.GenerateToken(
                     _config["Jwt:Issuer"],
@@ -101,11 +104,11 @@ namespace CarPoolServiceAPI.Controllers
                     _config["Jwt:Key"],
                     authenticatedUser
                 );
-                return new GenericApiResponse<string>().CreateApiResponse(true, HttpStatusCode.OK, token);
+                return new ApiResponse<string>().CreateApiResponse(true, HttpStatusCode.OK, token);
             }
             catch (Exception ex)
             {
-                return new GenericApiResponse<string>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
+                return new ApiResponse<string>().CreateApiResponse(false, HttpStatusCode.InternalServerError, null, ex.Message);
             }
         }
     }
