@@ -8,6 +8,6 @@ namespace CarPoolService.Contracts.Interfaces.Repository_Interfaces
         Task<UserDTO> RegisterUser(User user);
         Task<UserDTO> UpdateUser(User updatedUser);
         Task<UserDTO> GetUserById(int userId);
-        Task<bool> IsEmailTaken(string email);
+        Task<IEnumerable<UserDTO>> GetAllUsers();
     }
 }

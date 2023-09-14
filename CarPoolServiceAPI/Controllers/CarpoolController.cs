@@ -22,7 +22,7 @@ namespace CarPoolServiceAPI.Controllers
         }
 
         // Create a new offer ride via POST request
-        [HttpPost("offer-ride")]
+        [HttpPost("createOfferRide")]
         public async Task<ApiResponse<CarPoolRideDTO>> CreateOfferRide([FromBody] CarPoolRide ride)
         {
             try
@@ -37,7 +37,7 @@ namespace CarPoolServiceAPI.Controllers
         }
 
         // Get offered rides for a user via GET request
-        [HttpGet("offered-rides/{userId}")]
+        [HttpGet("getOfferedRides/{userId}")]
         public async Task<ApiResponse<IEnumerable<BookingDTO>>> GetOfferedRides([FromRoute] int userId)
         {
             try
@@ -52,7 +52,7 @@ namespace CarPoolServiceAPI.Controllers
         }
 
         // Create a new booked ride via POST request
-        [HttpPost("book-ride")]
+        [HttpPost("createBookRide")]
         public async Task<ApiResponse<BookingDTO>> CreateBookRide([FromBody] Booking booking)
         {
             try
@@ -67,7 +67,7 @@ namespace CarPoolServiceAPI.Controllers
         }
 
         // Get booked rides for a user via GET request
-        [HttpGet("booked-rides/{userId}")]
+        [HttpGet("getBookedRides/{userId}")]
         public async Task<ApiResponse<IEnumerable<CarPoolRideDTO>>> GetBookedRides([FromRoute] int userId)
         {
             try

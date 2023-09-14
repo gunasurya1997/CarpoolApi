@@ -39,7 +39,7 @@ namespace CarpoolService.DAL.Repositories
         {
             try
             {
-                _dbContext.Entry(updatedUser).State = EntityState.Modified; 
+                _dbContext.Entry(updatedUser).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
 
                 return _mapper.Map<UserDTO>(updatedUser);
@@ -50,12 +50,13 @@ namespace CarpoolService.DAL.Repositories
             }
         }
 
+
         // Get a user by ID
         public async Task<UserDTO> GetUserById(int userId)
         {
             try
             {
-                User? user = await _dbContext.Users.FindAsync(userId) ?? throw new NotFoundException();
+                User user = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId) ?? throw new NotFoundException();
                 return _mapper.Map<UserDTO>(user);
             }
             catch (Exception ex)
@@ -64,11 +65,19 @@ namespace CarpoolService.DAL.Repositories
             }
         }
 
-        // Check if an email is already taken
-        public async Task<bool> IsEmailTaken(string email)
+        // Get all the users from Database
+        public async Task<IEnumerable<UserDTO>> GetAllUsers()
         {
-            return await _dbContext.Users.AnyAsync(u => u.Email == email);
-        }
+            try
+            {
+                IEnumerable<User> users = await _dbContext.Users.ToListAsync();
+                return _mapper.Map<IEnumerable<UserDTO>>(users);    
+            }
+           catch(Exception ex)
+            {
+                throw new Exception("Error getting users from Database.", ex);
+            }
 
+        }
     }
 }

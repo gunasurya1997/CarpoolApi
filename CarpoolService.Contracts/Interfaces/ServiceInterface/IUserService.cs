@@ -10,7 +10,6 @@ namespace CarPoolService.Contracts.Interfaces.Service_Interface
         Task<UserDTO> UpdateUserAsync(int userId, User updatedUser);
         Task<UserDTO> AuthenticateUserAsync(Login loginUser);
         Task<UserDTO> GetUserByIdAsync(int userId);
-
         Task<bool> IsEmailTakenAsync(string email);
     }
 }

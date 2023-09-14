@@ -111,8 +111,9 @@ namespace CarpoolService.BAL.Services
 
             return BookedRideDTOs;
         }
-        #endregion
 
+        #endregion
+        // Find matching rides for a given ride
         public async Task<IEnumerable<CarPoolRideDTO>> FindMatchRides(Ride ride)
         {
             IEnumerable<CarPoolRideDTO> allOfferedRides = await _rideRepository.GetAllOfferedRidesForUser(ride.UserId);
@@ -148,6 +149,7 @@ namespace CarpoolService.BAL.Services
             return matchedRideDTOs;
         }
 
+        // Get a list of cities 
         public async Task<IEnumerable<CityDTO>> GetCities()
         {
             IEnumerable<CityDTO> cities = await _rideRepository.GetCities();
