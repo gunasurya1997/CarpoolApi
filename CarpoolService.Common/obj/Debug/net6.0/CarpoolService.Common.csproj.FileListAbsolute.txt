@@ -1,0 +1,12 @@
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\bin\Debug\net6.0\CarpoolService.Common.deps.json
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\bin\Debug\net6.0\CarpoolService.Common.dll
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\bin\Debug\net6.0\CarpoolService.Common.pdb
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\obj\Debug\net6.0\CarpoolService.Common.csproj.AssemblyReference.cache
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\obj\Debug\net6.0\CarpoolService.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\obj\Debug\net6.0\CarpoolService.Common.AssemblyInfoInputs.cache
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\obj\Debug\net6.0\CarpoolService.Common.AssemblyInfo.cs
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\obj\Debug\net6.0\CarpoolService.Common.csproj.CoreCompileInputs.cache
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\obj\Debug\net6.0\CarpoolService.Common.dll
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\obj\Debug\net6.0\refint\CarpoolService.Common.dll
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\obj\Debug\net6.0\CarpoolService.Common.pdb
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Common\obj\Debug\net6.0\ref\CarpoolService.Common.dll

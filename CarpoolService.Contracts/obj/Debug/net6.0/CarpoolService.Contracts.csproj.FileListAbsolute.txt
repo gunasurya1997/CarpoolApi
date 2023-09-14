@@ -22,3 +22,6 @@ C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Contracts\obj\Debug\net6
 C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Contracts\obj\Debug\net6.0\refint\CarpoolService.Contracts.dll
 C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Contracts\obj\Debug\net6.0\CarpoolService.Contracts.pdb
 C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Contracts\obj\Debug\net6.0\ref\CarpoolService.Contracts.dll
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Contracts\bin\Debug\net6.0\CarPoolService.Models.dll
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Contracts\bin\Debug\net6.0\CarPoolService.Models.pdb
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.Contracts\obj\Debug\net6.0\CarpoolService.Contracts.csproj.CopyComplete

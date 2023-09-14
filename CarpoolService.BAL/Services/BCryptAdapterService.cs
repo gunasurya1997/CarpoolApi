@@ -1,4 +1,5 @@
-﻿using CarPoolService.Models.Interfaces.Service_Interface;
+﻿
+using CarPoolService.Contracts.Interfaces.Service_Interface;
 
 namespace CarpoolService.BAL.Services
 {

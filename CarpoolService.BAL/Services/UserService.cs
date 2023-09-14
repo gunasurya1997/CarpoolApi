@@ -1,46 +1,117 @@
-﻿using CarpoolService.Contracts;
-using CarPoolService.DAL;
+﻿using AutoMapper;
+using CarpoolService.Common.Exceptions;
+using CarpoolService.Contracts;
+using CarPoolService.Contracts.Interfaces.Repository_Interfaces;
+using CarPoolService.Contracts.Interfaces.Service_Interface;
 using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
-using CarPoolService.Models.Interfaces.Repository_Interfaces;
-using CarPoolService.Models.Interfaces.Service_Interface;
-using Microsoft.EntityFrameworkCore;
 
 namespace CarpoolService.BAL.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly CarpoolDbContext _dbContext;
+        private readonly IBCryptService _bcrypt;
+        private readonly IMapper _mapper;
+        private IEnumerable<UserDTO> _users; 
 
-        public UserService(IUserRepository userRepository, CarpoolDbContext dbContext)
+
+        public UserService(IUserRepository userRepository, IBCryptService bcrypt, IMapper mapper)
         {
             _userRepository = userRepository;
-            _dbContext = dbContext;
+            _bcrypt = bcrypt;
+            _mapper = mapper;
         }
 
-        public async Task<UserDto> CreateUserAsync(User user)
+        private async Task<IEnumerable<UserDTO>> GetUsersAsync()
         {
-            return await _userRepository.AddUser(user);
+            _users ??= await _userRepository.GetAllUsers();
+            return _users;
         }
 
-        public async Task<UserDto> UpdateUserAsync(int userId, User updatedUser)
+        public async Task<UserDTO> RegisterUserAsync(User user)
         {
-            return await _userRepository.UpdateUser(userId, updatedUser);
+            try
+            {
+                string hashedPassword = _bcrypt.HashPassword(user.Password);
+                int highestUserId = (await GetUsersAsync()).Count();
+                User userEntity = new()
+                {
+                    UserId = highestUserId + 1,
+                    Email = user.Email,
+                    Password = hashedPassword,
+                    UserName = user.UserName,
+                    Image = user.Image
+                };
+                return await _userRepository.RegisterUser(userEntity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error registering user.", ex);
+            }
         }
 
-        public async Task<UserDto> AuthenticateUserAsync(Login loginUser)
+        public async Task<UserDTO> UpdateUserAsync(int userId, User updatedUser)
         {
-            return await _userRepository.AuthenticateUser(loginUser);
+            try
+            {
+             
+                UserDTO existingUserDTO = await GetUserByIdAsync(userId) ?? throw new NotFoundException();
+                existingUserDTO.Email = updatedUser.Email;
+                existingUserDTO.UserName = updatedUser.UserName;
+                existingUserDTO.Image = updatedUser.Image;
+                User existingUser = _mapper.Map<User>(existingUserDTO);
+                return await _userRepository.UpdateUser(existingUser);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating user.", ex);
+            }
         }
 
-        public async Task<UserDto> GetUserByIdAsync(int userId)
+        public async Task<UserDTO> AuthenticateUserAsync(Login loginUser)
         {
-            return await _userRepository.GetUserById(userId);
+            try
+            {
+                IEnumerable<UserDTO> users = await GetUsersAsync();
+                UserDTO user = users.FirstOrDefault(u => u.Email == loginUser.Email) ?? throw new NotFoundException();
+
+                if (!_bcrypt.VerifyPassword(loginUser.Password, user.Password))
+                {
+                    throw new UnauthorizedAccessException("Invalid password.");
+                }
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error authenticating user.", ex);
+            }
         }
+
+        public async Task<UserDTO> GetUserByIdAsync(int userId)
+        {
+            try
+            {
+                return await _userRepository.GetUserById(userId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting user by ID.", ex);
+            }
+        }
+
         public async Task<bool> IsEmailTakenAsync(string email)
         {
-            return await _dbContext.Users.AnyAsync(u => u.Email == email);
+            try
+            {
+                IEnumerable<UserDTO> users = await GetUsersAsync();
+                return users.Any(u => u.Email == email);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error checking if email is taken.", ex);
+            }
         }
     }
 }

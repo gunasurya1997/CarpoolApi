@@ -36,3 +36,5 @@ C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.BAL\obj\Debug\net6.0\Car
 C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.BAL\obj\Debug\net6.0\refint\CarpoolService.BAL.dll
 C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.BAL\obj\Debug\net6.0\CarpoolService.BAL.pdb
 C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.BAL\obj\Debug\net6.0\ref\CarpoolService.BAL.dll
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.BAL\bin\Debug\net6.0\CarpoolService.Common.dll
+C:\Users\surya.g\source\repos\CarpoolApi\CarpoolService.BAL\bin\Debug\net6.0\CarpoolService.Common.pdb
