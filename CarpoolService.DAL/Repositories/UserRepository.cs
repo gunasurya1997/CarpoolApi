@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using CarpoolService.Common.Exceptions;
-using CarpoolService.Contracts;
 using CarPoolService.Contracts.Interfaces.Repository_Interfaces;
 using CarPoolService.DAL;
 using CarPoolService.Models.DBModels;
 using Microsoft.EntityFrameworkCore;
+using DTO = CarpoolService.Contracts.DTOs;
+
 
 namespace CarpoolService.DAL.Repositories
 {
@@ -20,13 +21,13 @@ namespace CarpoolService.DAL.Repositories
         }
 
         // Register a new user
-        public async Task<UserDTO> RegisterUser(User user)
+        public async Task<DTO.User> RegisterUser(User user)
         {
             try
             {
-                _dbContext.Users.Add(user);
+                await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
-                return _mapper.Map<UserDTO>(user);
+                return _mapper.Map<DTO.User>(user);
             }
             catch (DbUpdateException ex)
             {
@@ -35,14 +36,14 @@ namespace CarpoolService.DAL.Repositories
         }
 
         // Update user information
-        public async Task<UserDTO> UpdateUser(User updatedUser)
+        public async Task<DTO.User> UpdateUser(CarPoolService.Models.DBModels.User updatedUser)
         {
             try
             {
                 _dbContext.Entry(updatedUser).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
 
-                return _mapper.Map<UserDTO>(updatedUser);
+                return _mapper.Map<DTO.User>(updatedUser);
             }
             catch (DbUpdateException ex)
             {
@@ -52,12 +53,12 @@ namespace CarpoolService.DAL.Repositories
 
 
         // Get a user by ID
-        public async Task<UserDTO> GetUserById(int userId)
+        public async Task<DTO.User> GetUserById(int userId)
         {
             try
             {
-                User user = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == userId) ?? throw new NotFoundException();
-                return _mapper.Map<UserDTO>(user);
+                User user = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == userId) ?? throw new NotFoundException("User not found");
+                return _mapper.Map<DTO.User>(user);
             }
             catch (Exception ex)
             {
@@ -66,12 +67,12 @@ namespace CarpoolService.DAL.Repositories
         }
 
         // Get all the users from Database
-        public async Task<IEnumerable<UserDTO>> GetAllUsers()
+        public async Task<IEnumerable<DTO.User>> GetAllUsers()
         {
             try
             {
                 IEnumerable<User> users = await _dbContext.Users.ToListAsync();
-                return _mapper.Map<IEnumerable<UserDTO>>(users);    
+                return _mapper.Map<IEnumerable<DTO.User>>(users);    
             }
            catch(Exception ex)
             {
@@ -79,5 +80,20 @@ namespace CarpoolService.DAL.Repositories
             }
 
         }
+
+        // Get the count of all users in the database       
+        public async Task<int> GetUserCount()
+        {
+            try
+            {
+                int count = await _dbContext.Users.CountAsync();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting the count of users from the Database.", ex);
+            }
+        }
+
     }
 }

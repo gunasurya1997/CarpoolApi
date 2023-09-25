@@ -1,15 +1,15 @@
-﻿using CarpoolService.Contracts;
-using CarPoolService.Models;
+﻿using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
+using DTO = CarpoolService.Contracts.DTOs;
 
 namespace CarPoolService.Contracts.Interfaces.Service_Interface
 {
     public interface IUserService
     {
-        Task<UserDTO> RegisterUserAsync(User user);
-        Task<UserDTO> UpdateUserAsync(int userId, User updatedUser);
-        Task<UserDTO> AuthenticateUserAsync(Login loginUser);
-        Task<UserDTO> GetUserByIdAsync(int userId);
+        Task<DTO.User> RegisterUserAsync(User user);
+        Task<DTO.User> UpdateUserAsync(int userId, User updatedUser);
+        Task<DTO.User> AuthenticateUserAsync(Login loginUser);
+        Task<DTO.User> GetUserByIdAsync(int userId);
         Task<bool> IsEmailTakenAsync(string email);
     }
 }

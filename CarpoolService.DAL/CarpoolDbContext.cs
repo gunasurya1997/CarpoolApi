@@ -29,11 +29,11 @@ public partial class CarpoolDbContext : DbContext
     {
         modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.BookingId).HasName("PK__Bookings__73951ACDF512D655");
+            entity.HasKey(e => e.Id).HasName("PK__Bookings__73951ACDF512D655");
 
-            entity.Property(e => e.BookingId)
+            entity.Property(e => e.Id)
                 .ValueGeneratedNever()
-                .HasColumnName("BookingID");
+                .HasColumnName("Id");
             entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.DropLocationId).HasColumnName("DropLocationID");
             entity.Property(e => e.PassengerId).HasColumnName("PassengerID");
@@ -43,11 +43,11 @@ public partial class CarpoolDbContext : DbContext
 
         modelBuilder.Entity<CarPoolRide>(entity =>
         {
-            entity.HasKey(e => e.RideId).HasName("PK__CarPoolR__C5B8C414591FCDD0");
+            entity.HasKey(e => e.Id).HasName("PK__CarPoolR__C5B8C414591FCDD0");
 
-            entity.Property(e => e.RideId)
+            entity.Property(e => e.Id)
                 .ValueGeneratedNever()
-                .HasColumnName("RideID");
+                .HasColumnName("Id");
             entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.DepartureCityId).HasColumnName("DepartureCityID");
             entity.Property(e => e.DestinationCityId).HasColumnName("DestinationCityID");
@@ -56,23 +56,22 @@ public partial class CarpoolDbContext : DbContext
 
         modelBuilder.Entity<City>(entity =>
         {
-            entity.HasKey(e => e.CityId).HasName("PK__Cities__F2D21A96D5F628C4");
+            entity.HasKey(e => e.Id).HasName("PK__Cities__F2D21A96D5F628C4");
 
-            entity.Property(e => e.CityId)
+            entity.Property(e => e.Id)
                 .ValueGeneratedNever()
-                .HasColumnName("CityID");
-            entity.Property(e => e.CityName).HasMaxLength(255);
+                .HasColumnName("Id");
+            entity.Property(e => e.Name).HasMaxLength(255);
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC9A9A1D86");
+            entity.HasKey(e => e.Id).HasName("PK__Users__1788CCAC9A9A1D86");
 
             entity.HasIndex(e => e.Email, "UQ__Users__A9D10534428E5288").IsUnique();
 
-            entity.Property(e => e.UserId)
-                .ValueGeneratedNever()
-                .HasColumnName("UserID");
+            entity.Property(e => e.Id)
+                .HasColumnName("Id");
             entity.Property(e => e.Email).HasMaxLength(255);
             entity.Property(e => e.Password).HasMaxLength(255);
         });

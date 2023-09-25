@@ -1,7 +1,7 @@
 ﻿
 using CarPoolService.Contracts.Interfaces.Service_Interface;
 
-namespace CarpoolService.BAL.Services
+namespace CarpoolService.BLL.Services
 {
     public class BCryptAdapterService:IBCryptService
     {

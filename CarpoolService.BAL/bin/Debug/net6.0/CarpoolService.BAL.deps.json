@@ -9,6 +9,7 @@
       "CarpoolService.BAL/1.0.0": {
         "dependencies": {
           "CarPoolService.Models": "1.0.0",
+          "CarpoolService.Common": "1.0.0",
           "CarpoolService.DAL": "1.0.0"
         },
         "runtime": {

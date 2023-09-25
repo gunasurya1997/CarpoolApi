@@ -2,6 +2,6 @@
 {
     public class NotFoundException : Exception
     {
-        public NotFoundException(string? customMessage = "User not found") : base(customMessage) { }
+        public NotFoundException(string? customMessage = "") : base(customMessage) { }
     }
 }

@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPoolService.Models", "Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarpoolService.Contracts", "CarpoolService.Contracts\CarpoolService.Contracts.csproj", "{628A3C77-18AC-42FB-821E-13291B761FDD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarpoolService.BAL", "CarpoolService.BAL\CarpoolService.BAL.csproj", "{C05D8512-49F3-4CF3-AB24-A7C07B4C2265}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarpoolService.BLL", "CarpoolService.BAL\CarpoolService.BLL.csproj", "{C05D8512-49F3-4CF3-AB24-A7C07B4C2265}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarpoolService.DAL", "CarpoolService.DAL\CarpoolService.DAL.csproj", "{BA1FC5EA-48B7-4CE7-9406-EE1B63B707C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarpoolService.Common", "CarpoolService.Common\CarpoolService.Common.csproj", "{7867A0A8-C75C-457F-99E1-F85C0C312F4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarpoolService.Common", "CarpoolService.Common\CarpoolService.Common.csproj", "{7867A0A8-C75C-457F-99E1-F85C0C312F4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

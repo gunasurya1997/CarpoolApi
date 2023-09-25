@@ -1,13 +1,15 @@
-﻿using CarpoolService.Contracts;
-using CarPoolService.Models.DBModels;
+﻿using CarPoolService.Models.DBModels;
+using DTO = CarpoolService.Contracts.DTOs;
+
 
 namespace CarPoolService.Contracts.Interfaces.Repository_Interfaces
 {
     public interface IUserRepository
     {
-        Task<UserDTO> RegisterUser(User user);
-        Task<UserDTO> UpdateUser(User updatedUser);
-        Task<UserDTO> GetUserById(int userId);
-        Task<IEnumerable<UserDTO>> GetAllUsers();
+        Task<DTO.User> RegisterUser(User user);
+        Task<DTO.User> UpdateUser(User updatedUser);
+        Task<DTO.User> GetUserById(int userId);
+        Task<IEnumerable<DTO.User>> GetAllUsers();
+        Task<int> GetUserCount();
     }
 }

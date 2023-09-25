@@ -1,8 +1,8 @@
-﻿namespace CarpoolService.Contracts
+﻿namespace CarpoolService.Contracts.DTOs
 {
-    public class UserDTO
+    public class User
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         public string? UserName { get; set; }
 

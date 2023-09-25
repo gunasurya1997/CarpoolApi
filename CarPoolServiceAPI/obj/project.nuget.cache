@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hL65wr28YYO6w6E+FhYUJHvPUdnhhP6P4rshF+XuwsjE7AxOnIaEWUHy0jFdTfVNNoItYoSUoHSGp3XEBqR1MQ==",
+  "dgSpecHash": "/i2a6AEhpuxGCKwk4cRkcO96rclEDqNUAO5hTixLFd3zNURCbug6sl4+5oJQn3BbBhGtz1cpOGDQ3UeG44aXNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\surya.g\\source\\repos\\CarpoolApi\\CarPoolServiceAPI\\CarPoolServiceAPI.csproj",
   "expectedPackageFiles": [
@@ -50,8 +50,9 @@
     "C:\\Users\\surya.g\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\surya.g\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\surya.g\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
-    "C:\\Users\\surya.g\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
-    "C:\\Users\\surya.g\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\surya.g\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
+    "C:\\Users\\surya.g\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\surya.g\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\surya.g\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\surya.g\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\surya.g\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
