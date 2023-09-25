@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using CarpoolService.Contracts;
 using CarPoolService.Models.DBModels;
+using DTO = CarpoolService.Contracts.DTOs;
+
 
 namespace CarPoolServiceAPI.Mappings
 {
@@ -8,10 +9,10 @@ namespace CarPoolServiceAPI.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<User, UserDTO>().ReverseMap(); 
-            CreateMap<CarPoolRide, CarPoolRideDTO>().ReverseMap();
-            CreateMap<Booking,BookingDTO>().ReverseMap();
-            CreateMap<City, CityDTO>().ReverseMap();
+            CreateMap<User, DTO.User>().ReverseMap(); 
+            CreateMap<CarPoolRide, DTO.Ride>().ReverseMap();
+            CreateMap<Booking, DTO.Booking>().ReverseMap();
+            CreateMap<City, DTO.City>().ReverseMap();
         }
     }
 }

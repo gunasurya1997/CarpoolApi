@@ -1,22 +1,22 @@
-﻿using CarpoolService.Contracts;
-using CarPoolService.Contracts.Interfaces.Service_Interface;
+﻿using CarPoolService.Contracts.Interfaces.Service_Interface;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using DTO = CarpoolService.Contracts.DTOs;
 
-namespace CarpoolService.BAL.Services
+namespace CarpoolService.BLL.Services
 {
     public class TokenService : ITokenService
     {
-        public string GenerateToken(string issuer, string audience, string key, UserDTO authenticatedUser)
+        public string GenerateToken(string issuer, string audience, string key, DTO.User authenticatedUser)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>
             {
-                new Claim("UserId", authenticatedUser.UserId.ToString()), 
+                new Claim("UserId", authenticatedUser.Id.ToString()), 
                 new Claim(ClaimTypes.Email, authenticatedUser.Email),
             };
 

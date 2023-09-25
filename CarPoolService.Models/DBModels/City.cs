@@ -7,8 +7,8 @@ namespace CarPoolService.Models.DBModels
     public partial class City
     {
         [Key]
-        public int CityId { get; set; }
+        public int Id { get; set; }
 
-        public string? CityName { get; set; }
+        public string? Name { get; set; }
     }
 }

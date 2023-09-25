@@ -1,8 +1,8 @@
-﻿namespace CarpoolService.Contracts
+﻿namespace CarpoolService.Contracts.DTOs
 {
-    public class BookingDTO
+    public class Booking
     {
-        public Guid BookingId { get; set; }
+        public Guid Id { get; set; }
 
         public Guid RideId { get; set; }
 

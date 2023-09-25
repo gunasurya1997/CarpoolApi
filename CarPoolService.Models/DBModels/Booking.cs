@@ -7,7 +7,7 @@ namespace CarPoolService.Models.DBModels
     public partial class Booking
     {
         [Key]
-        public Guid BookingId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public Guid RideId { get; set; }
@@ -31,6 +31,6 @@ namespace CarPoolService.Models.DBModels
         public int ReservedSeats { get; set; }
 
         [Required]
-        public string Fare { get; set; }
+        public int Fare { get; set; }
     }
 }

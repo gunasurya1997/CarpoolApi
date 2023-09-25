@@ -1,4 +1,4 @@
-using CarpoolService.BAL.Services;
+using CarpoolService.BLL.Services;
 using CarpoolService.DAL.Repositories;
 using CarPoolService.Contracts.Interfaces.Repository_Interfaces;
 using CarPoolService.Contracts.Interfaces.Service_Interface;
@@ -37,12 +37,17 @@ builder.Services.AddAuthentication(configureOptions: options =>
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
+builder.Services.AddSwaggerGen(options =>
+{
+    options.CustomSchemaIds(type => type.ToString());
+});
 builder.Services.AddScoped<IUserService, UserService>();  
 builder.Services.AddScoped<IBCryptService, BCryptAdapterService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ICarpoolRepository, CarPoolRideRepository>();
-builder.Services.AddScoped<ICarpoolService, CarpoolRideService>();
-builder.Services.AddScoped<ITokenService,TokenService>();      
+builder.Services.AddScoped<IRideRepository, RideRepository>();
+builder.Services.AddScoped<IRideService, RideService>();
+builder.Services.AddScoped<ITokenService,TokenService>();
+builder.Services.AddMemoryCache();
 builder.Services.AddControllers();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile), typeof(Program));

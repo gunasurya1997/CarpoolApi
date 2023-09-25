@@ -7,7 +7,7 @@ namespace CarPoolService.Models.DBModels
     public partial class CarPoolRide
     {
         [Key]
-        public Guid RideId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public int DriverId { get; set; }
@@ -34,6 +34,6 @@ namespace CarPoolService.Models.DBModels
         public bool RideStatus { get; set; }
 
         [Required]
-        public string Fare { get; set; }
+        public int Fare { get; set; }
     }
 }

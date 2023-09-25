@@ -1,11 +1,9 @@
-﻿namespace CarpoolService.Contracts
+﻿namespace CarpoolService.Contracts.DTOs
 {
-    public class CarPoolRideDTO
+    public class Ride
     {
-        public string? DriverName { get; set; }
-        public int DriverId { get; set; }
 
-        public Guid RideId { get; set; }
+        public Guid Id { get; set; }
 
         public int DepartureCityId { get; set; }
 
@@ -23,10 +21,13 @@
 
         public string Fare { get; set; }
 
-        public string DriverImage { get; set;}
+        public string DriverImage { get; set; }
 
         public string DepartureCityName { get; set; }
 
-        public string DestinationCityName { get; set; }    
+        public string DestinationCityName { get; set; }
+        public string? DriverName { get; set; }
+        public int DriverId { get; set; }
+
     }
 }

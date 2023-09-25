@@ -7,7 +7,7 @@ namespace CarPoolService.Models.DBModels
     public partial class User
     {
         [Key]
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         public string? UserName { get; set; }
 
