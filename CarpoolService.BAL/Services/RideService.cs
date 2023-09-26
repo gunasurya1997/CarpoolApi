@@ -4,6 +4,7 @@ using CarPoolService.Contracts.Interfaces.Service_Interface;
 using CarPoolService.DAL;
 using CarPoolService.Models.DBModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using DTO = CarpoolService.Contracts.DTOs;
 
 
@@ -13,11 +14,14 @@ namespace CarpoolService.BLL.Services
     {
         private readonly CarpoolDbContext _dbContext;
         private readonly IRideRepository _rideRepository;
+        private readonly IMemoryCache _cache;
 
-        public RideService(IRideRepository rideRepository, CarpoolDbContext dbContext)
+
+        public RideService(IRideRepository rideRepository, CarpoolDbContext dbContext, IMemoryCache cache)
         {
             _rideRepository = rideRepository;
             _dbContext = dbContext;
+            _cache = cache;
         }
         private static string GetCityNamesForStops(string stops, IEnumerable<DTO.City> cities)
         {
@@ -202,16 +206,28 @@ namespace CarpoolService.BLL.Services
         // Get a list of cities 
         public async Task<IEnumerable<DTO.City>> GetCities()
         {
+            const string cacheKey = "CitiesCacheKey";
+
+            //retrieve's cities from the cache
+            if (_cache.TryGetValue(cacheKey, out IEnumerable<DTO.City> cities))
+            {
+                return cities;
+            }
+
             try
             {
-                IEnumerable<DTO.City> cities = await _rideRepository.GetCities();
+                cities = await _rideRepository.GetCities();
+                // Cache the fetched cities for a specified duration 
+                _cache.Set(cacheKey, cities, TimeSpan.FromMinutes(15));
+
                 return cities;
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while getting cities" + ex.Message, ex);
+                throw new Exception("An error occurred while getting cities: " + ex.Message, ex);
             }
         }
+
 
     }
 }
