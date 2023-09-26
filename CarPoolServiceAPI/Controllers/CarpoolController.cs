@@ -4,7 +4,6 @@ using CarPoolService.Models.DBModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using System.Net;
 using DTO = CarpoolService.Contracts.DTOs;
 
@@ -15,13 +14,11 @@ namespace CarPoolServiceAPI.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CarpoolController : ControllerBase
     {
-        private readonly IMemoryCache _cache;
         private readonly IRideService _rideService;
 
-        public CarpoolController(IRideService rideService, IMemoryCache cache)
+        public CarpoolController(IRideService rideService)
         {
             _rideService = rideService;
-            _cache = cache;
         }
 
         // Create a new offer ride via POST request
@@ -103,17 +100,9 @@ namespace CarPoolServiceAPI.Controllers
         [HttpGet("cities")]
         public async Task<ApiResponse<IEnumerable<DTO.City>>> GetCities()
         {
-            if (_cache.TryGetValue("CitiesCacheKey", out IEnumerable<DTO.City> cities))
-            {
-                return new ApiResponse<IEnumerable<DTO.City>>().CreateApiResponse(true, HttpStatusCode.OK, cities);
-            }
-
             try
             {
-                cities = await _rideService.GetCities();
-
-                _cache.Set("CitiesCacheKey", cities, TimeSpan.FromMinutes(15));
-
+                IEnumerable<DTO.City> cities = await _rideService.GetCities();
                 return new ApiResponse<IEnumerable<DTO.City>>().CreateApiResponse(true, HttpStatusCode.OK, cities);
             }
             catch (Exception ex)
