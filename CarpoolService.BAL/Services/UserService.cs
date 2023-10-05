@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CarpoolService.Common.Exceptions;
-using CarPoolService.Contracts.Interfaces.Repository_Interfaces;
-using CarPoolService.Contracts.Interfaces.Service_Interface;
+using CarpoolService.Contracts.Interfaces.RepositoryInterfaces;
+using CarpoolService.Contracts.Interfaces.ServiceInterface;
 using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
 using DTO = CarpoolService.Contracts.DTOs;
@@ -14,7 +14,7 @@ namespace CarpoolService.BLL.Services
         private readonly IUserRepository _userRepository;
         private readonly IBCryptService _bcrypt;
         private readonly IMapper _mapper;
-        private IEnumerable<DTO.User> _users; 
+        private IEnumerable<DTO.User> _users;
 
 
         public UserService(IUserRepository userRepository, IBCryptService bcrypt, IMapper mapper)
@@ -34,6 +34,10 @@ namespace CarpoolService.BLL.Services
         {
             try
             {
+                if (user.Password == null)
+                {
+                    throw new ArgumentException("Password cannot be null.");
+                }
                 string hashedPassword = _bcrypt.HashPassword(user.Password);
                 User userEntity = new()
                 {
@@ -58,7 +62,7 @@ namespace CarpoolService.BLL.Services
                 existingUserDTO.Email = updatedUser.Email;
                 existingUserDTO.UserName = updatedUser.UserName;
                 existingUserDTO.Image = updatedUser.Image;
-                User existingUser = _mapper.Map<User>(existingUserDTO); 
+                User existingUser = _mapper.Map<User>(existingUserDTO);
                 return await _userRepository.UpdateUser(existingUser);
             }
             catch (Exception ex)
@@ -73,8 +77,11 @@ namespace CarpoolService.BLL.Services
             {
                 IEnumerable<DTO.User> users = await GetUsersAsync();
                 DTO.User user = users.FirstOrDefault(u => u.Email == loginUser.Email) ?? throw new NotFoundException("User not found");
-
-                if (!_bcrypt.VerifyPassword(loginUser.Password, user.Password))
+                if (user.Password == null)
+                {
+                    throw new ArgumentException("Password cannot be null.");
+                }
+                else if (!_bcrypt.VerifyPassword(loginUser.Password, user.Password))
                 {
                     throw new UnauthorizedAccessException("Invalid password.");
                 }

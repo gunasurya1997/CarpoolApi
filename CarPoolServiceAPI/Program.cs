@@ -1,7 +1,7 @@
 using CarpoolService.BLL.Services;
+using CarpoolService.Contracts.Interfaces.RepositoryInterfaces;
+using CarpoolService.Contracts.Interfaces.ServiceInterface;
 using CarpoolService.DAL.Repositories;
-using CarPoolService.Contracts.Interfaces.Repository_Interfaces;
-using CarPoolService.Contracts.Interfaces.Service_Interface;
 using CarPoolService.DAL;
 using CarPoolServiceAPI.Mappings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

@@ -1,6 +1,6 @@
 ﻿using DTO = CarpoolService.Contracts.DTOs;
 
-namespace CarPoolService.Contracts.Interfaces.Service_Interface
+namespace CarpoolService.Contracts.Interfaces.ServiceInterface
 {
     public interface ITokenService
     {

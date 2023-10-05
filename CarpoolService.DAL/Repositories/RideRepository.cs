@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CarPoolService.Contracts.Interfaces.Repository_Interfaces;
+using CarpoolService.Contracts.Interfaces.RepositoryInterfaces;
 using CarPoolService.DAL;
 using CarPoolService.Models.DBModels;
 using Microsoft.EntityFrameworkCore;

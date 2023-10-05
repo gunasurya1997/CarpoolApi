@@ -2,7 +2,7 @@
 using DTO = CarpoolService.Contracts.DTOs;
 
 
-namespace CarPoolService.Contracts.Interfaces.Repository_Interfaces
+namespace CarpoolService.Contracts.Interfaces.RepositoryInterfaces
 {
     public interface IUserRepository
     {

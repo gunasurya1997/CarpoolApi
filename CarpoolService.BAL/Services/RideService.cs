@@ -1,6 +1,6 @@
 ﻿using CarpoolService.Common.Exceptions;
-using CarPoolService.Contracts.Interfaces.Repository_Interfaces;
-using CarPoolService.Contracts.Interfaces.Service_Interface;
+using CarpoolService.Contracts.Interfaces.RepositoryInterfaces;
+using CarpoolService.Contracts.Interfaces.ServiceInterface;
 using CarPoolService.DAL;
 using CarPoolService.Models.DBModels;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +16,6 @@ namespace CarpoolService.BLL.Services
         private readonly IRideRepository _rideRepository;
         private readonly IMemoryCache _cache;
 
-
         public RideService(IRideRepository rideRepository, CarpoolDbContext dbContext, IMemoryCache cache)
         {
             _rideRepository = rideRepository;
@@ -28,8 +27,8 @@ namespace CarpoolService.BLL.Services
             if (string.IsNullOrEmpty(stops))
                 return string.Empty;
 
-            var stopIds = stops.Split(',').Select(int.Parse);
-            var stopNames = stopIds.Select(id => cities.FirstOrDefault(c => c.Id == id)?.Name);
+            IEnumerable<int> stopIds = stops.Split(',').Select(int.Parse);
+            IEnumerable<string?> stopNames = stopIds.Select(id => cities.FirstOrDefault(c => c.Id == id)?.Name);
             return string.Join(",", stopNames);
         }
         #region OfferRide
@@ -122,8 +121,8 @@ namespace CarpoolService.BLL.Services
             {
                 IEnumerable<DTO.Ride> allOfferedRides = await _rideRepository.GetAllOfferedRides();
                 IEnumerable<DTO.Booking> allBookedRides = await _rideRepository.GetAllBookedRides();
-                var bookedRides = allBookedRides.Where(ride => ride.PassengerId == userId);
-                var userRides = allOfferedRides.Where(offeredRide => bookedRides
+                IEnumerable<DTO.Booking> bookedRides = allBookedRides.Where(ride => ride.PassengerId == userId);
+                IEnumerable<DTO.Ride> userRides = allOfferedRides.Where(offeredRide => bookedRides
                .Any(ride => ride.RideId == offeredRide.Id)).ToList();
 
                 IEnumerable<int> cityIds = bookedRides.Select(ride => ride.PickupLocationId).Union(bookedRides.Select(ride => ride.DropLocationId)).Distinct().ToList();
@@ -167,7 +166,7 @@ namespace CarpoolService.BLL.Services
             {
 
                 IEnumerable<DTO.Ride> allOfferedRides = await _rideRepository.GetAllOfferedRides();
-                var allCities = await GetCities();
+                IEnumerable<DTO.City> allCities = await GetCities();
                 IEnumerable<DTO.Ride> filteredRides = allOfferedRides.Where(offerRide => (offerRide.TimeSlot == ride.TimeSlot && offerRide.DriverId != ride.UserId) && (offerRide.Date == ride.Date && !offerRide.RideStatus)).ToList();
                 IEnumerable<DTO.Ride> matchedRides = filteredRides.Where(offer => (ride.StartPoint == offer.DepartureCityId && ride.EndPoint == offer.DestinationCityId) ||
                 (ride.StartPoint == offer.DepartureCityId || ride.EndPoint == offer.DestinationCityId || offer.Stops.Split(',').Select(int.Parse).Contains(ride.StartPoint) &&

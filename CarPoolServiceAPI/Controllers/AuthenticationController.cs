@@ -1,4 +1,4 @@
-﻿using CarPoolService.Contracts.Interfaces.Service_Interface;
+﻿using CarpoolService.Contracts.Interfaces.ServiceInterface;
 using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
 using Microsoft.AspNetCore.Mvc;
@@ -54,7 +54,7 @@ namespace CarPoolServiceAPI.Controllers
                 {
                     return new ApiResponse<string>().CreateApiResponse(false, HttpStatusCode.BadRequest, null, "User not Found");
                 }
-                var token = _tokenService.GenerateToken(
+                string token = _tokenService.GenerateToken(
                     _config["Jwt:Issuer"],
                     _config["Jwt:Audience"],
                     _config["Jwt:Key"],

@@ -1,5 +1,5 @@
 ﻿
-using CarPoolService.Contracts.Interfaces.Service_Interface;
+using CarpoolService.Contracts.Interfaces.ServiceInterface;
 
 namespace CarpoolService.BLL.Services
 {

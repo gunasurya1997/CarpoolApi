@@ -1,4 +1,4 @@
-﻿using CarPoolService.Contracts.Interfaces.Service_Interface;
+﻿using CarpoolService.Contracts.Interfaces.ServiceInterface;
 using CarPoolService.Models;
 using CarPoolService.Models.DBModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
